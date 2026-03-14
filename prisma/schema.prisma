@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ──────────────────────────────────────
+// USER — stores login credentials
+// ──────────────────────────────────────
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  boards Board[]
+}
+
+// ──────────────────────────────────────
+// BOARD — a user can have multiple boards
+// e.g., "Work", "Personal", "Side Project"
+// ──────────────────────────────────────
+model Board {
+  id        String   @id @default(cuid())
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId  String
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  columns Column[]
+}
+
+// ──────────────────────────────────────
+// COLUMN — each board has columns
+// e.g., "To Do", "In Progress", "Done"
+// ──────────────────────────────────────
+model Column {
+  id       String @id @default(cuid())
+  title    String
+  position Int    // determines left-to-right order
+
+  boardId String
+  board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  cards   Card[]
+}
+
+// ──────────────────────────────────────
+// CARD — the actual task items
+// e.g., "Fix login bug", "Design homepage"
+// ──────────────────────────────────────
+model Card {
+  id          String   @id @default(cuid())
+  title       String
+  description String?  // optional longer description
+  position    Int      // determines top-to-bottom order within a column
+  priority    String   @default("medium") // "low", "medium", "high"
+  dueDate     DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  columnId String
+  column   Column @relation(fields: [columnId], references: [id], onDelete: Cascade)
+}
