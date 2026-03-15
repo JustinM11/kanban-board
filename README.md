@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kanban Board
+
+A full-stack Kanban board application with drag-and-drop, user authentication, and real-time board management.
+
+**Live Demo:** [(https://kanban-board-git-main-justinm11s-projects.vercel.app/login)]
+
+## Features
+
+- User authentication (signup/login) with hashed passwords
+- Create, edit, and delete boards
+- Drag-and-drop cards between columns
+- Add, edit, and delete cards with priority levels
+- Add custom columns to boards
+- Responsive dark-mode UI
+- Optimistic updates for instant UI feedback
+
+## Tech Stack
+
+- **Frontend:** Next.js 16, React, Tailwind CSS
+- **Backend:** Next.js API Routes
+- **Database:** PostgreSQL (Neon)
+- **ORM:** Prisma
+- **Auth:** NextAuth.js with JWT
+- **Drag & Drop:** dnd-kit
+- **Deployment:** Vercel
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repo:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git clone https://github.com/JustinM11/kanban-board.git
+   cd kanban-board
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+   npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Set up environment variables:
 
-## Learn More
+DATABASE_URL="your-postgresql-url"
+NEXTAUTH_SECRET="your-secret"
+NEXTAUTH_URL="http://localhost:3000"
 
-To learn more about Next.js, take a look at the following resources:
+4. Push the database schema:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+   npx prisma db push
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Run the development server:
 
-## Deploy on Vercel
+```bash
+   npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## What I Learned
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Building REST APIs with proper authentication and authorization
+- Database design with relational models (one-to-many relationships)
+- Implementing drag-and-drop with optimistic UI updates
+- Server vs. client components in Next.js App Router
+- Deploying a full-stack app with environment variables
