@@ -1,15 +1,13 @@
 // src/lib/types.ts
-// These types match our Prisma models but are plain objects (no Prisma methods)
-
 export type Card = {
   id: string;
   title: string;
   description: string | null;
   position: number;
   priority: string;
-  dueDate: string | null;
-  createdAt: string;
-  updatedAt: string;
+  dueDate: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
   columnId: string;
 };
 
