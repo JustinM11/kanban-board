@@ -1,7 +1,13 @@
-export default function Home() {
-  return (
-    <main className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
-      <h1 className="text-4xl font-bold">Kanban Board</h1>
-    </main>
-  );
+// src/app/page.tsx
+import { redirect } from "next/navigation";
+import { getCurrentUser } from "@/lib/session";
+
+export default async function Home() {
+  const user = await getCurrentUser();
+
+  if (user) {
+    redirect("/dashboard");
+  } else {
+    redirect("/login");
+  }
 }
