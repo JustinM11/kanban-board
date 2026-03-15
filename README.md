@@ -41,9 +41,11 @@ A full-stack Kanban board application with drag-and-drop, user authentication, a
 
 3. Set up environment variables:
 
-DATABASE_URL="your-postgresql-url"
-NEXTAUTH_SECRET="your-secret"
-NEXTAUTH_URL="http://localhost:3000"
+```
+   DATABASE_URL="your-postgresql-url"
+   NEXTAUTH_SECRET="your-secret"
+   NEXTAUTH_URL="http://localhost:3000"
+```
 
 4. Push the database schema:
 
